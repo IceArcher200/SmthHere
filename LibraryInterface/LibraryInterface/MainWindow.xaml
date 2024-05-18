@@ -1,0 +1,22 @@
+﻿<Window x:Class="LibraryInterface.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryInterface"
+        xmlns:localClasses="clr-namespace:LibraryInterface.Classes"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="900" Closed="Window_Closed">
+    <DockPanel x:Name="dockPanel">
+        <Menu x:Name ="menu" DockPanel.Dock="Top">
+            
+        </Menu>
+
+        <Button DockPanel.Dock="Bottom" Height="30" Width="300" Content="Редактировать" FontSize="20" Margin="500,5,0,2" Click="Edit_Click"/>
+        <Button DockPanel.Dock="Bottom" Height="30" Width="200" Content="Сохранить" FontSize="20" Margin="-500,5,0,-35" Click="SaveButton_Click"/>
+        <localClasses:DataGridWidget x:Name="firstGrid" AutoGenerateColumns="False" Height="380">
+
+        </localClasses:DataGridWidget>
+        
+    </DockPanel>
+</Window>
