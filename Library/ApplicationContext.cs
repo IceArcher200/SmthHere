@@ -17,10 +17,10 @@ namespace Library
         // /*
         public DbSet<Client> Client => Set<Client>();
         public DbSet<Street> Street => Set<Street>();
-        public DbSet<Education> Education => Set<Education>();
+        public DbSet<EducationLevel> EducationLevel => Set<EducationLevel>();
         public DbSet<Employer> Employer => Set<Employer>();
         public DbSet<MenuInfo> MenuInfo => Set<MenuInfo>();
-        public DbSet<Institution> Institution => Set<Institution>();
+        public DbSet<VacancyType> VacancyType => Set<VacancyType>();
         public DbSet<Specialty> Specialty => Set<Specialty>();
         public DbSet<Vacancy> Vacancy => Set<Vacancy>();
         public DbSet<Worker> Worker => Set<Worker>();

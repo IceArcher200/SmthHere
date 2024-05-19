@@ -23,4 +23,5 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 //{
 
 //}
+ApplicationContext app = new ApplicationContext();
 Console.ReadKey();

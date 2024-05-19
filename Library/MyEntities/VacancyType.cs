@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Library.MyEntities
 {
-    public class Institution
+    public class VacancyType
     {
         int id;
         string name;
 
-        public Institution()
+        public VacancyType()
         {
             name = string.Empty;
         }

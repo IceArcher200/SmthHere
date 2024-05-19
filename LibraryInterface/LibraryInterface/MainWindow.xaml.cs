@@ -197,9 +197,9 @@ namespace LibraryInterface
             col3.Binding = new Binding("Patronymic");
             firstGrid.Columns.Add(col3);
 
-            DataGridNumericColumn col4 = new DataGridNumericColumn();
-            col4.Header = "Возраст";
-            col4.Binding = new Binding("Age");
+            DataGridTextColumn col4 = new DataGridTextColumn();
+            col4.Header = "Дата рождения";
+            col4.Binding = new Binding("Birthday");
             firstGrid.Columns.Add(col4);
 
             DataGridComboBoxColumn comboColumn2 = new DataGridComboBoxColumn();
@@ -235,12 +235,22 @@ namespace LibraryInterface
             col10.Binding = new Binding("Register_Date");
             firstGrid.Columns.Add(col10);
 
+            DataGridTextColumn col13 = new DataGridTextColumn();
+            col13.Header = "Название уч.заведения";
+            col13.Binding = new Binding("Institutuion_Name");
+            firstGrid.Columns.Add(col13);
+
+            DataGridTextColumn col14 = new DataGridTextColumn();
+            col14.Header = "Номер документа";
+            col14.Binding = new Binding("EducationIndex");
+            firstGrid.Columns.Add(col14);
+
             DataGridComboBoxColumn comboColumn3 = new DataGridComboBoxColumn();
-            comboColumn3.Header = "Документ об образовании";
-            comboColumn3.ItemsSource = db.Education.ToList();
-            comboColumn3.SelectedValueBinding = new Binding("EducationID");
+            comboColumn3.Header = "Уровень образования";
+            comboColumn3.ItemsSource = db.EducationLevel.ToList();
+            comboColumn3.SelectedValueBinding = new Binding("EducationLevelID");
             comboColumn3.SelectedValuePath = "ID";
-            comboColumn3.DisplayMemberPath = "DocumentIndex";
+            comboColumn3.DisplayMemberPath = "Name";
             firstGrid.Columns.Add(comboColumn3);
 
             DataGridComboBoxColumn comboColumn4 = new DataGridComboBoxColumn();
@@ -318,7 +328,7 @@ namespace LibraryInterface
             firstGrid.Visibility = Visibility.Visible;
         }
 
-        private void EducationDocuments_Click(object sender, RoutedEventArgs e)
+        private void EducationLevel_Click(object sender, RoutedEventArgs e)
         {
             firstGrid.Visibility = Visibility.Hidden;
             firstGrid.ItemsSource = null;
@@ -332,27 +342,35 @@ namespace LibraryInterface
             Granting_Rights(info);
 
 
-            DataGridComboBoxColumn comboColumn2 = new DataGridComboBoxColumn();
-            comboColumn2.Header = "Степень";
-            comboColumn2.ItemsSource = new List<string>() { "Дошкольное", "Нач. общее", "Основное общее", "Среднее общее", "Среднее профессиональное", "Высшее 1 степени", "Высшее 2 степени", "Высшее 3 степени" };
-            comboColumn2.SelectedValueBinding = new Binding("Level");
-            firstGrid.Columns.Add(comboColumn2);
-            DataGridNumericColumn col3 = new DataGridNumericColumn();
-            col3.Header = "Номер документа";
-            col3.Binding = new Binding("DocumentIndex");
+
+            DataGridTextColumn col3 = new DataGridTextColumn();
+            col3.Header = "Название";
+            col3.Binding = new Binding("Name");
             firstGrid.Columns.Add(col3);
 
-            DataGridComboBoxColumn comboColumn1 = new DataGridComboBoxColumn();
-            comboColumn1.Header = "Уч.заведение";
-            comboColumn1.ItemsSource = db.Institution.ToList();
-            comboColumn1.SelectedValueBinding = new Binding("InstitutionID");
-            comboColumn1.SelectedValuePath = "ID";
-            comboColumn1.DisplayMemberPath = "Name";
-            firstGrid.Columns.Add(comboColumn1);
+            firstGrid.ItemsSource = db.EducationLevel.ToList();
+            firstGrid.Visibility = Visibility.Visible;
+        }
 
+        private void VacancyType_Click(object sender, RoutedEventArgs e)
+        {
+            firstGrid.Visibility = Visibility.Hidden;
+            firstGrid.ItemsSource = null;
+            firstGrid.Columns.Clear();
+            if (strangeEvent == true)
+            {
+                firstGrid.RowEditEnding -= FirstGrid_SourceUpdated;
+                strangeEvent = false;
+            }
+            UserInfo info = userInfo.Find(x => x.MenuInfoId == (sender as MyMenuItem)!.Id)!;
+            Granting_Rights(info);
 
+            DataGridTextColumn col3 = new DataGridTextColumn();
+            col3.Header = "Название";
+            col3.Binding = new Binding("Name");
+            firstGrid.Columns.Add(col3);
 
-            firstGrid.ItemsSource = db.Education.ToList();
+            firstGrid.ItemsSource = db.VacancyType.ToList();
             firstGrid.Visibility = Visibility.Visible;
         }
 
@@ -399,29 +417,6 @@ namespace LibraryInterface
             firstGrid.Visibility = Visibility.Visible;
         }
 
-
-        private void Institution_Click(object sender, RoutedEventArgs e)
-        {
-            firstGrid.Visibility = Visibility.Hidden;
-            firstGrid.ItemsSource = null;
-            firstGrid.Columns.Clear();
-            if (strangeEvent == true)
-            {
-                firstGrid.RowEditEnding -= FirstGrid_SourceUpdated;
-                strangeEvent = false;
-            }
-            UserInfo info = userInfo.Find(x => x.MenuInfoId == (sender as MyMenuItem)!.Id)!;
-            Granting_Rights(info);
-
-
-            DataGridTextColumn col3 = new DataGridTextColumn();
-            col3.Header = "Название";
-            col3.Binding = new Binding("Name");
-            firstGrid.Columns.Add(col3);
-
-            firstGrid.ItemsSource = db.Institution.ToList();
-            firstGrid.Visibility = Visibility.Visible;
-        }
         private void Positions_Click(object sender, RoutedEventArgs e)
         {
             firstGrid.Visibility = Visibility.Hidden;
@@ -502,8 +497,10 @@ namespace LibraryInterface
 
             DataGridComboBoxColumn comboColumn1 = new DataGridComboBoxColumn();
             comboColumn1.Header = "Тип вакансии";
-            comboColumn1.ItemsSource = new List<string>() { "IT", "Финансы и экономика", "Маркетинг", "Торговля", "Инженерия", "Образование и наука", "Медицина", "Логистика", "Строительство", "Юриспруденция" };
-            comboColumn1.SelectedValueBinding = new Binding("Type");
+            comboColumn1.ItemsSource = db.VacancyType.ToList();
+            comboColumn1.SelectedValueBinding = new Binding("TypeID");
+            comboColumn1.SelectedValuePath = "ID";
+            comboColumn1.DisplayMemberPath = "Name";
             firstGrid.Columns.Add(comboColumn1);
 
             DataGridComboBoxColumn comboColumn2 = new DataGridComboBoxColumn();
@@ -745,6 +742,10 @@ namespace LibraryInterface
         private void AboutProgramm_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Добро пожаловать в информационную систему биржи труда. После того как вы зашли в систему под вашим логином и паролем, вы можете выбрать один из пунктов меню, которые находятся выше. Далее у вас появится таблица с данными, чтобы редактировать или добавлять данные нужно нажать кнопку \"Редактировать\", после завершения редактирования нажмите кнопку \"Завершить редактирование\" и \"Сохранить\". После этого все внесенные изменения сохраняться.");
+        }
+        private void UserHelp_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Редактирование таблицы:\r\n1. Внесение новой записи, например: добавлять данные о новом студенте в таблицу студентов\r\n2. Редактирование записи, например: изменение фамилии или должности профессора в таблице\r\n3. Удаление записи, например: удалить запись из таблицы\r\nАвторизация:\r\n1. Авторизация пользователя путём ввода логина и пароля, по логину определяется роль пользователя в системе\r\n2. Смена пароля: позволяет сменить пароль пользователя. Для этого нужно внести используемый пароль на данный момент и подтвердить новый\r\n");
         }
     }
 }
