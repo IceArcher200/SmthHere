@@ -24,5 +24,6 @@ namespace Library.MyEntities
         public string Name { get { return name; } set { name = value; } }
         public string Surname { get { return surname; } set { surname = value; } }
         public string Patronymic { get { return patronymic; } set { patronymic = value; } }
+        public string FullName { get { return Surname + " " + Name + " " + Patronymic; } }
     }
 }

@@ -200,6 +200,7 @@ namespace LibraryInterface
             DataGridTextColumn col4 = new DataGridTextColumn();
             col4.Header = "Дата рождения";
             col4.Binding = new Binding("Birthday");
+            col4.Binding.StringFormat = "dd/MM/yyyy";
             firstGrid.Columns.Add(col4);
 
             DataGridComboBoxColumn comboColumn2 = new DataGridComboBoxColumn();
@@ -223,6 +224,7 @@ namespace LibraryInterface
             DataGridTextColumn col8 = new DataGridTextColumn();
             col8.Header = "Дата выдачи паспорта";
             col8.Binding = new Binding("Passport_Receipt_Date");
+            col8.Binding.StringFormat = "dd/MM/yyyy";
             firstGrid.Columns.Add(col8);
 
             DataGridTextColumn col9 = new DataGridTextColumn();
@@ -233,6 +235,7 @@ namespace LibraryInterface
             DataGridTextColumn col10 = new DataGridTextColumn();
             col10.Header = "Дата регистрации";
             col10.Binding = new Binding("Register_Date");
+            col10.Binding.StringFormat = "dd/MM/yyyy";
             firstGrid.Columns.Add(col10);
 
             DataGridTextColumn col13 = new DataGridTextColumn();
@@ -305,7 +308,7 @@ namespace LibraryInterface
             comboColumn1.ItemsSource = db.Client.ToList();
             comboColumn1.SelectedValueBinding = new Binding("ClientID");
             comboColumn1.SelectedValuePath = "ID";
-            comboColumn1.DisplayMemberPath = "Name";
+            comboColumn1.DisplayMemberPath = "FullName";
             firstGrid.Columns.Add(comboColumn1);
 
             DataGridComboBoxColumn comboColumn2 = new DataGridComboBoxColumn();
@@ -313,7 +316,7 @@ namespace LibraryInterface
             comboColumn2.ItemsSource = db.Worker.ToList();
             comboColumn2.SelectedValueBinding = new Binding("WorkerID");
             comboColumn2.SelectedValuePath = "ID";
-            comboColumn2.DisplayMemberPath = "Name";
+            comboColumn2.DisplayMemberPath = "FullName";
             firstGrid.Columns.Add(comboColumn2);
 
 
@@ -321,6 +324,7 @@ namespace LibraryInterface
             DataGridTextColumn col10 = new DataGridTextColumn();
             col10.Header = "Дата";
             col10.Binding = new Binding("Date");
+            col10.Binding.StringFormat = "dd/MM/yyyy";
             firstGrid.Columns.Add(col10);
 
 
@@ -495,6 +499,11 @@ namespace LibraryInterface
             UserInfo info = userInfo.Find(x => x.MenuInfoId == (sender as MyMenuItem)!.Id)!;
             Granting_Rights(info);
 
+            DataGridNumericColumn col1 = new DataGridNumericColumn();
+            col1.Header = "Номер";
+            col1.Binding = new Binding("ID");
+            firstGrid.Columns.Add(col1);
+
             DataGridComboBoxColumn comboColumn1 = new DataGridComboBoxColumn();
             comboColumn1.Header = "Тип вакансии";
             comboColumn1.ItemsSource = db.VacancyType.ToList();
@@ -523,6 +532,22 @@ namespace LibraryInterface
             col2.Header = "Зарплата";
             col2.Binding = new Binding("Salary");
             firstGrid.Columns.Add(col2);
+
+            DataGridNumericColumn col3 = new DataGridNumericColumn();
+            col3.Header = "Мин. возраст";
+            col3.Binding = new Binding("MinAge");
+            firstGrid.Columns.Add(col3);
+
+            DataGridNumericColumn col4 = new DataGridNumericColumn();
+            col4.Header = "Макс. возраст";
+            col4.Binding = new Binding("MaxAge");
+            firstGrid.Columns.Add(col4);
+
+            DataGridComboBoxColumn comboColumn4 = new DataGridComboBoxColumn();
+            comboColumn4.Header = "Ограничение по полу";
+            comboColumn4.ItemsSource = new List<string>() { "Любой","Только мужской","Только женский"};
+            comboColumn4.SelectedValueBinding = new Binding("PreferGender");
+            firstGrid.Columns.Add(comboColumn4);
 
             firstGrid.ItemsSource = db.Vacancy.ToList();
             firstGrid.Visibility = Visibility.Visible;

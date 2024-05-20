@@ -8,7 +8,8 @@ namespace Library.MyEntities
 {
     public class Employer
     {
-        int id, phone, house, streetID;
+        int id, house, streetID;
+        long phone;
         string name;
         Street? street;
         //List<Vacancy> vacancy = new List<Vacancy>();
@@ -21,7 +22,7 @@ namespace Library.MyEntities
 
         public int ID { get { return id; } set { id = value; } }
         public int StreetID { get { return streetID; } set { streetID = value; } }
-        public int Phone { get { return phone; } set { phone = value; } }
+        public long Phone { get { return phone; } set { phone = value; } }
         public int House { get { return house; } set { house = value; } }
         public string Name { get { return name; } set { name = value; } }
         public Street? Street { get { return street; } set { street = value; } }

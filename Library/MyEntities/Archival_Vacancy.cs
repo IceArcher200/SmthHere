@@ -23,7 +23,7 @@ namespace Library.MyEntities
            //client = new Client();
            //worker = new Worker();
            //vacancy = new Vacancy();
-           date = new DateTime();
+           date = DateTime.Now;
 
         }
 
