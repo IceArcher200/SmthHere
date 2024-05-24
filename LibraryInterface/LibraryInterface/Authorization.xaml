@@ -5,13 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryInterface"
         mc:Ignorable="d"
-        Title="Авторизация" Height="210" Width="300" Closed="LoginWindow_Closed" WindowStartupLocation="CenterScreen">
-    <StackPanel Margin="10">
-        <Label Content="Логин"/>
-        <TextBox x:Name="tbLogin"/>
-        <Label Content="Пароль"/>
-        <PasswordBox x:Name="tbPassword"/>
-        <Button Content="Авторизация" Margin="0 10" Width="150" Click="LoginButton_Click"/>
-        <Button Content="Сменить пароль" Width="100" BorderBrush="White" Background="White" Click="ForgetPassword_Click"/>
-    </StackPanel>
+        Title="Авторизация" Height="300" Width="400" Background="#99CCFF" Closed="LoginWindow_Closed">
+    <Grid Name="MainGrids">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="4*" Name ="Column1"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Image Source="/bunch-of-keys-1.png" Grid.RowSpan="2" Grid.Column="0"/>
+            <TextBlock FontSize="18" Background="#FFFF99" Text="АИС Биржа труда" Grid.Column="1" Grid.Row="0" TextAlignment="Right" />
+            <TextBlock FontSize="18" Background="#FFFF22" Text="Версия 1.0.0.0" Grid.Column="1" Grid.Row="1" TextAlignment="Right"/>
+            <TextBlock FontSize="18" Background="#FFFFFF" Text="Введите имя пользователя и пароль" Grid.ColumnSpan="2" Grid.Row="2" TextAlignment="Right" Width="{Binding ActualWidth, ElementName=MainGrid}"/>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <TextBlock FontSize="14" Grid.Row="1" TextAlignment="Center" VerticalAlignment="Center">Имя пользователя:</TextBlock>
+            <TextBlock FontSize="14" Grid.Row="3" TextAlignment="Center" VerticalAlignment="Center">Пароль:</TextBlock>
+            <TextBox FontSize="14" Grid.Row="1" Grid.Column="1" Margin="10,0,10,0" Name="tbLogin"></TextBox>
+            <PasswordBox FontSize="14" Grid.Row="3" Grid.Column="1" Margin="10,0,10,0" Name="tbPassword"></PasswordBox>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Name ="Ok" Margin="25,0,25,0" Grid.Row="1" Grid.ColumnSpan="2" Click="LoginButton_Click" Width="150">Вход</Button>
+            <Button Margin="25,0,25,0" Grid.Row="3" Grid.ColumnSpan="2" Width="150" Click="ForgetPassword_Click">Сменить пароль</Button>
+        </Grid>
+
+
+    </Grid>
 </Window>
