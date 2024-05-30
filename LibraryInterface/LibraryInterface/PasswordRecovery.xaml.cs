@@ -25,6 +25,27 @@ namespace LibraryInterface
         {
             InitializeComponent();
         }
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            SetCapsLockOnState();
+        }
+
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            SetCapsLockOnState();
+        }
+
+        private void SetCapsLockOnState()
+        {
+            if (Console.CapsLock)
+            {
+                Caps.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Caps.Visibility = Visibility.Hidden;
+            }
+        }
 
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {

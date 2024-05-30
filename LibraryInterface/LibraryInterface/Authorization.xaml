@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LibraryInterface"
         mc:Ignorable="d"
+        Activated="Window_Activated"
+        PreviewKeyDown="Window_PreviewKeyDown"
         Title="Авторизация" Height="300" Width="400" Background="#99CCFF" Closed="LoginWindow_Closed">
     <Grid Name="MainGrids">
         <Grid.RowDefinitions>
@@ -57,6 +59,7 @@
             </Grid.ColumnDefinitions>
             <Button Name ="Ok" Margin="25,0,25,0" Grid.Row="1" Grid.ColumnSpan="2" Click="LoginButton_Click" Width="150">Вход</Button>
             <Button Margin="25,0,25,0" Grid.Row="3" Grid.ColumnSpan="2" Width="150" Click="ForgetPassword_Click">Сменить пароль</Button>
+            <TextBlock Name="Caps" Visibility="Hidden" TextAlignment="Center" VerticalAlignment="Center" Margin="134,0,134,0" FontWeight="Bold" FontStyle="Italic" Grid.ColumnSpan="2"><Run Text="Caps Lock "/><Run Language="ru-ru" Text="включен!"/></TextBlock>
         </Grid>
 
 
